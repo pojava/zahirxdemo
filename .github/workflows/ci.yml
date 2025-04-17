@@ -19,7 +19,7 @@ jobs:
 
       # Set up GPG (this step installs GPG)
       - name: Set up GPG
-        uses: olafurpg/setup-gpg@v1
+        uses: olafurpg/setup-gpg@v3
 
       # Set up Python
       - name: Set up Python
