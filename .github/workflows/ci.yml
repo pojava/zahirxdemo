@@ -1,0 +1,47 @@
+name: Zahir Demo Project CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      # Run tests (if you have any in the future)
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+          
+      # Commit any changes back to the repository (optional step, for example: if you use linting/formatting)
+      # - name: Commit changes
+      #   run: |
+      #     git config --global user.email "your-email@example.com"
+      #     git config --global user.name "Your Name"
+      #     git add .
+      #     git commit -m "fix code style"
+      #     git push
+
